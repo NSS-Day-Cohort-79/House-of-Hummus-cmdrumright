@@ -6,5 +6,7 @@ const renderAllHTML = async () => {
     mainContainer.innerHTML = await FoodTruck()
 }
 
+document.addEventListener("purchaseSubmitted", renderAllHTML)
+
 renderAllHTML()
 

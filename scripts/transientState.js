@@ -1,4 +1,4 @@
-const transientState = {
+let transientState = {
     entreeId: 0,
     vegetableId: 0,
     sideId: 0
@@ -18,6 +18,13 @@ const handleSubmit = async (e) => {
                 },
                 body: JSON.stringify(transientState)
             })
+
+            transientState = {
+                entreeId: 0,
+                vegetableId: 0,
+                sideId: 0
+            }
+            
             const submitEvent = new CustomEvent("purchaseSubmitted")
             document.dispatchEvent(submitEvent)
         } else {

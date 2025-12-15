@@ -4,7 +4,7 @@ import { vegetableList } from "./Vegetables.js"
 import { sideList } from "./SideDishes.js"
 
 export const FoodTruck = async () => {
-    const salesHTML = Sales()
+    const salesHTML = await Sales()
     const entreesHTML = await entreeList()
     const vegetablesHTML = await vegetableList()
     const sidesHTML = await sideList()

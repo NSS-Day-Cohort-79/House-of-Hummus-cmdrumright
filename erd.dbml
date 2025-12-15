@@ -1,0 +1,24 @@
+Table entrees {
+    id int [pk, increment]
+    name string
+    price float
+}
+
+Table vegetables {
+    id int [pk, increment]
+    type string
+    price float
+}
+
+Table sides {
+    id int [pk, increment]
+    title string
+    price float
+}
+
+Table purchases {
+    id int [pk, increment]
+    entreeId int [ref: > entrees.id]
+    vegetableId int [ref: > vegetables.id]
+    sidesId int [ref: > sides.id]
+}

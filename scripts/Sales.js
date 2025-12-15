@@ -5,7 +5,7 @@ export const Sales = async () => {
         const totalPrice = sale.entree.price + sale.vegetable.price + sale.side.price
         return `
             <div class="sale">
-                Reciept #${sale.id} = ${totalPrice.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
+                Receipt #${sale.id} = ${totalPrice.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}
         `
     })
 

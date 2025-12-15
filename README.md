@@ -63,3 +63,62 @@ sequenceDiagram
    > Your answer here
 4. You used the `map()` array method in the self assessment _(at least, you should have since it is a learning objective)_. Explain why that function is helpful as a replacement for a `for..of` loop.
    > Your answer here
+
+## Dependency Graph
+```mermaid
+flowchart TD
+   Database[("API")]
+   main-->FoodTruck
+   FoodTruck-->Entrees
+   FoodTruck-->Vegetables
+   FoodTruck-->SideDishes
+   FoodTruck-->Sales
+   FoodTruck-->PurchaseButton
+   Entrees-->Database
+   Vegetables-->Database
+   SideDishes-->Database
+   Sales-->Database
+   PurchaseButton-->Database
+   TransientState-->Database
+   Entrees-->TransientState
+   Vegetables-->TransientState
+   SideDishes-->TransientState
+   Sales-->TransientState
+   PurchaseButton-->TransientState
+```
+
+## Sequence Diagram
+```mermaid
+sequenceDiagram
+   participant DOM
+    participant Main
+    Main->>DOM: Query container element
+    DOM-->>Main: Return container element
+    Main->>Main: Invoke Render function
+    Main->>FoodTruck: Invoke FoodTruck function
+      FoodTruck->>Entrees: Invoke Entrees function
+         Entrees->>API: fetch list of entree objects
+         API-->>Entrees: return list of entree objects
+         Entrees->>Entrees: map entree objects to html list
+      Entrees-->>FoodTruck: return entree selection html
+      FoodTruck->>SideDishes: Invoke SideDishes function
+         SideDishes->>API: fetch list of side dish objects
+         API-->>SideDishes: return list of side dish objects
+         SideDishes->>SideDishes: map side dish objects to html list
+      SideDishes-->>FoodTruck: return side dish selection html
+      FoodTruck->>Vegetables: Invoke Vegetables function
+         Vegetables->>API: fetch list of vegetable objects
+         API-->>Vegetables: return list of vegetable objects
+         Vegetables->>Vegetables: map vegetable objects to html list
+      Vegetables-->>FoodTruck: return vegetable selection html
+      FoodTruck->>PurchaseButton: Invoke purchaseButton function
+      PurchaseButton-->>FoodTruck: Return purchase button html
+      FoodTruck->>Sales: invoke Sales function
+         Sales->>API: fetch purchases
+         API-->>Sales: return array of purchases
+         Sales->>Sales: map purchase objects to html list
+      Sales-->>FoodTruck: return sales html
+      FoodTruck->>FoodTruck: Build Food Truck HTML
+   FoodTruck-->>Main: return FoodTruck HTML
+   Main->>Main: set innerHTML of container   
+```

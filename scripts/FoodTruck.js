@@ -1,7 +1,9 @@
 import { Sales } from "./Sales.js"
+import { entreeList } from "./Entrees.js"
 
-export const FoodTruck = () => {
+export const FoodTruck = async () => {
     const salesHTML = Sales()
+    const entreesHTML = await entreeList()
 
     return `
         <header class="header">
@@ -10,6 +12,9 @@ export const FoodTruck = () => {
         </header>
 
         <article>
+            <section class="choices">
+            ${entreesHTML}
+            </section>
             <button id="purchase">Purchase Combo</button>
         </article>
 
